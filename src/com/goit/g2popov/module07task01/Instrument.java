@@ -1,5 +1,7 @@
 package com.goit.g2popov.module07task01;
 
+import java.math.BigDecimal;
+
 /**
  * Class {@code Instrument} specifies guitars as a commodity in the online shop
  * @author  Andrii Popov
@@ -8,24 +10,30 @@ package com.goit.g2popov.module07task01;
 public abstract class Instrument {
 
         // Wholesale price of an instrument
-        private double wholesalePrice;
+        private BigDecimal wholesalePrice;
 
         // Retail price of an instrument
-        private double retailPrice;
+        private BigDecimal retailPrice;
 
-        public double getRetailPrice() {
+        public BigDecimal getRetailPrice() {
                 return retailPrice;
         }
 
-        public double getWholesalePrice() {
+        public BigDecimal getWholesalePrice() {
                 return wholesalePrice;
         }
 
-        public void setWholesalePrice(double wholesalePrice) {
+        public void setWholesalePrice(BigDecimal wholesalePrice) {
                 this.wholesalePrice = wholesalePrice;
         }
 
-        public void setRetailPrice(double retailPrice) {
+        public void setRetailPrice(BigDecimal retailPrice) {
                 this.retailPrice = retailPrice;
+        }
+
+        public String getInstrumentName() {
+                String line = this.getClass().getName();
+                String[] parts = line.split("\\.");
+                return parts[4];
         }
 }

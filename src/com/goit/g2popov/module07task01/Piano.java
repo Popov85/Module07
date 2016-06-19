@@ -6,4 +6,8 @@ package com.goit.g2popov.module07task01;
  */
 
 public class Piano extends Instrument {
+        public Piano() {
+                super();
+                this.setRetailPrice(Prices.getPrice("Piano"));
+        }
 }

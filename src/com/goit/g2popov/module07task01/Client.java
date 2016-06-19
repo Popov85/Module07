@@ -8,6 +8,10 @@ package com.goit.g2popov.module07task01;
 public class Client {
         private String name;
 
+        public Client() {
+                this.name = "Mr Simpson";
+        }
+
         public String getName() {
                 return name;
         }

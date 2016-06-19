@@ -1,4 +1,4 @@
-package com.goit.g2popov.module07task01;;
+package com.goit.g2popov.module07task01;
 
 /**
  * Class {@code Trumpet} specifies trumpets as a commodity in the online shop
@@ -6,4 +6,8 @@ package com.goit.g2popov.module07task01;;
  */
 
 public class Trumpet extends Instrument {
+        public Trumpet() {
+                super();
+                this.setRetailPrice(Prices.getPrice("Trumpet"));
+        }
 }

@@ -42,12 +42,14 @@ public class StoreHouse {
          * Pianos: 2
          * Trumpets: 9
          */
+
         public static void printStockState() {
+                System.out.println("Stock state:");
                 for (Map.Entry<Instrument, Integer> entry : stock.entrySet()) {
                         Instrument key = entry.getKey();
                         Integer value = entry.getValue();
-                        System.out.print("Instrument: "+key.getClass().getName());
-                        System.out.println(" "+value+" pieces left in stock");
+                        System.out.print(key.getInstrumentName());
+                        System.out.println("s: "+value+" pieces left in stock");
                 }
         }
 }

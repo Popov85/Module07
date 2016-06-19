@@ -12,7 +12,8 @@ public class OrderItem {
         // Item that a customer asked
         private Instrument instrument;
 
-        public OrderItem(int number, Instrument instrument) {
+        public OrderItem(int number, Instrument instrument) throws Exception {
+                if (number == 0) throw new Exception("Quantity of 0 was selected!");
                 this.numberOfItems = number;
                 this.instrument = instrument;
         }
@@ -32,4 +33,10 @@ public class OrderItem {
         public void setInstrument(Instrument instrument) {
                 this.instrument = instrument;
         }
+
+        @Override
+        public String toString() {
+                return "{"+this.getInstrument().getInstrumentName()+"/"+this.getNumberOfItems()+"}";
+        }
+
 }

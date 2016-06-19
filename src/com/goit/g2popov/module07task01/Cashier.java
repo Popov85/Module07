@@ -8,6 +8,10 @@ package com.goit.g2popov.module07task01;
 public class Cashier {
         private String name;
 
+        public Cashier() {
+                this.name = "Mrs Smith";
+        }
+
         public String getName() {
                 return name;
         }

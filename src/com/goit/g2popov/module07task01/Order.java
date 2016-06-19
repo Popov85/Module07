@@ -1,5 +1,6 @@
 package com.goit.g2popov.module07task01;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -32,6 +33,7 @@ public class Order {
                 items = new ArrayList<OrderItem>();
                 isFulfilled = false;
                 client = new Client();
+                cashier = new Cashier();
         }
 
         public int getId() {
@@ -82,11 +84,18 @@ public class Order {
          * Ships an order to the customer
          * Decreases numbers of all instruments in stock according to the order
          */
-        public void prepareInstruments() {
+        public void prepareInstruments() throws Exception {
+                if (items.size() == 0) throw new Exception("Nothing to ship");
                 for (int i = 0; i < items.size(); i++) {
+                        //Decrease the number of instruments in stock
                         OrderItem pieceOfOrder = items.get(i);
                         StoreHouse.decreaseNumberOfInstrumentsInStock(pieceOfOrder.getInstrument(),pieceOfOrder.getNumberOfItems());
+                        // Decrease the amount of money in the cash desk
+                        BigDecimal quantity = new BigDecimal(pieceOfOrder.getNumberOfItems());
+                        BigDecimal price = pieceOfOrder.getInstrument().getRetailPrice();
+                        CashDesk.increaseCurrentSum(price.multiply(quantity));
                 }
+                this.isFulfilled = true;
         }
 
         /**
@@ -109,6 +118,8 @@ public class Order {
                         this.items.add(pieceOfOrder);
                 } catch (MoreThanIsLeftException e) {
                         System.out.println("User asked more than it is left in stock...");
+                } catch (Exception e) {
+                        System.out.println("Quantity is zero, so will not create an OrderItem");
                 }
         }
 
