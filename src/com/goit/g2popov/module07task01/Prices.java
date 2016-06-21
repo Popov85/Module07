@@ -5,11 +5,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Андрей on 19.06.2016.
+ * Class {@code Prices} defines prices on all instruments
+ * @author  Andrii Popov
  */
+
 public class Prices {
 
-        // Current prices of instruments
+        // Current retail prices of instruments
         private static Map<String,BigDecimal> prices = new HashMap<String, BigDecimal>();
 
         public static Map<String, BigDecimal> getPrices() {

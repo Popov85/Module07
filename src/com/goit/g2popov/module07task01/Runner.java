@@ -24,20 +24,15 @@ import java.util.Random;
 public class Runner {
         public static void main (String[] args) throws Exception {
                 // Set prices on instruments
-                Prices.changePrices("Piano", new BigDecimal("9700.75"));
-                Prices.changePrices("Trumpet", new BigDecimal("6655.35"));
-                Prices.changePrices("Guitar", new BigDecimal("2999.90"));
+                setPrices();
                 // Create instances of musical instruments
                 Instrument aPiano = new Piano();
                 Instrument aTrumpet = new Trumpet();
                 Instrument aGuitar = new Guitar();
+                // Initialize an initial sum of money
                 CashDesk.setCurrentSum(new BigDecimal("500000"));
                 // Fill StoreHouse with some musical instruments
-                HashMap<Instrument, Integer> mapInstance = new HashMap<Instrument, Integer>();
-                mapInstance.put(aPiano, 200);
-                mapInstance.put(aTrumpet, 700);
-                mapInstance.put(aGuitar, 1600);
-                StoreHouse.setStock(mapInstance);
+                setInitialQuantity(aPiano, aTrumpet, aGuitar);
                 // Print the current state of StoreHouse
                 StoreHouse.printStockState();
                 /*Let's make a dozen of orders to be printed out and add them to an ArrayList*/
@@ -48,6 +43,20 @@ public class Runner {
                 StoreHouse.printStockState();
                 // See the current state of the cash desk
                 System.out.println("Money left: " + CashDesk.getCurrentSum());
+        }
+
+        private static void setInitialQuantity(Instrument aPiano, Instrument aTrumpet, Instrument aGuitar) {
+                HashMap<Instrument, Integer> mapInstance = new HashMap<Instrument, Integer>();
+                mapInstance.put(aPiano, 200);
+                mapInstance.put(aTrumpet, 700);
+                mapInstance.put(aGuitar, 1600);
+                StoreHouse.setStock(mapInstance);
+        }
+
+        private static void setPrices() {
+                Prices.changePrices("Piano", new BigDecimal("9700.75"));
+                Prices.changePrices("Trumpet", new BigDecimal("6655.35"));
+                Prices.changePrices("Guitar", new BigDecimal("2999.90"));
         }
 
         /**
